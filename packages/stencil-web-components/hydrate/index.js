@@ -4695,7 +4695,7 @@ function hydrateFactory($stencilWindow, $stencilHydrateOpts, $stencilHydrateResu
 
 
 const NAMESPACE = 'stencil-web-components';
-const BUILD = /* stencil-web-components */ { allRenderFn: true, appendChildSlotFix: false, asyncLoading: true, attachStyles: true, cloneNodeFix: false, cmpDidLoad: false, cmpDidRender: false, cmpDidUnload: false, cmpDidUpdate: false, cmpShouldUpdate: false, cmpWillLoad: false, cmpWillRender: false, cmpWillUpdate: false, connectedCallback: false, constructableCSS: false, cssAnnotations: true, cssVarShim: false, devTools: false, disconnectedCallback: false, dynamicImportShim: false, element: false, event: true, hasRenderFn: true, hostListener: false, hostListenerTarget: false, hostListenerTargetBody: false, hostListenerTargetDocument: false, hostListenerTargetParent: false, hostListenerTargetWindow: false, hotModuleReplacement: false, hydrateClientSide: true, hydrateServerSide: true, hydratedAttribute: false, hydratedClass: true, isDebug: false, isDev: false, isTesting: false, lazyLoad: true, lifecycle: false, lifecycleDOMEvents: false, member: true, method: false, mode: false, observeAttribute: true, profile: false, prop: true, propBoolean: false, propMutable: false, propNumber: true, propString: true, reflect: false, safari10: false, scoped: true, scriptDataOpts: false, shadowDelegatesFocus: false, shadowDom: true, shadowDomShim: true, slot: false, slotChildNodesFix: false, slotRelocation: true, state: true, style: true, svg: false, taskQueue: true, updatable: true, vdomAttribute: true, vdomClass: true, vdomFunctional: false, vdomKey: false, vdomListener: true, vdomPropOrAttr: true, vdomRef: false, vdomRender: true, vdomStyle: false, vdomText: true, vdomXlink: false, watchCallback: false };
+const BUILD = /* stencil-web-components */ { allRenderFn: true, appendChildSlotFix: false, asyncLoading: true, attachStyles: true, cloneNodeFix: false, cmpDidLoad: false, cmpDidRender: false, cmpDidUnload: false, cmpDidUpdate: false, cmpShouldUpdate: false, cmpWillLoad: false, cmpWillRender: false, cmpWillUpdate: false, connectedCallback: false, constructableCSS: false, cssAnnotations: true, cssVarShim: false, devTools: false, disconnectedCallback: false, dynamicImportShim: false, element: false, event: true, hasRenderFn: true, hostListener: false, hostListenerTarget: false, hostListenerTargetBody: false, hostListenerTargetDocument: false, hostListenerTargetParent: false, hostListenerTargetWindow: false, hotModuleReplacement: false, hydrateClientSide: true, hydrateServerSide: true, hydratedAttribute: false, hydratedClass: true, isDebug: false, isDev: false, isTesting: false, lazyLoad: true, lifecycle: false, lifecycleDOMEvents: false, member: true, method: false, mode: false, observeAttribute: true, profile: false, prop: true, propBoolean: false, propMutable: false, propNumber: true, propString: true, reflect: false, safari10: false, scoped: true, scriptDataOpts: false, shadowDelegatesFocus: false, shadowDom: true, shadowDomShim: true, slot: true, slotChildNodesFix: false, slotRelocation: true, state: true, style: true, svg: false, taskQueue: true, updatable: true, vdomAttribute: true, vdomClass: true, vdomFunctional: false, vdomKey: false, vdomListener: true, vdomPropOrAttr: true, vdomRef: false, vdomRender: true, vdomStyle: false, vdomText: true, vdomXlink: false, watchCallback: false };
 
 function componentOnReady() {
  return getHostRef(this).$onReadyPromise$;
@@ -4983,9 +4983,9 @@ const createElm = (e, t, o, n) => {
  for (;t <= o; ++t) (n = e[t]) && (s = n.$elm$, (checkSlotFallbackVisibility = !0, 
  s["s-ol"] ? s["s-ol"].remove() : putBackInOriginalLocation(s, !0)), s.remove());
 }, isSameVnode = (e, t) => e.$tag$ === t.$tag$ && ("slot" === e.$tag$ ? e.$name$ === t.$name$ : !BUILD.vdomKey ), referenceNode = e => e && e["s-ol"] || e, parentReferenceNode = e => (e["s-ol"] ? e["s-ol"] : e).parentNode, patch = (e, t) => {
- const o = t.$elm$ = e.$elm$, n = e.$children$, s = t.$children$, a = t.$text$;
+ const o = t.$elm$ = e.$elm$, n = e.$children$, s = t.$children$, l = t.$tag$, a = t.$text$;
  let r;
- null !== a ? (r = o["s-cr"]) ? r.parentNode.textContent = a : e.$text$ !== a && (o.data = a) : ((updateElement(e, t, isSvgMode)), 
+ null !== a ? (r = o["s-cr"]) ? r.parentNode.textContent = a : e.$text$ !== a && (o.data = a) : (("slot" === l || updateElement(e, t, isSvgMode)), 
  null !== n && null !== s ? ((e, t, o, n) => {
   let s, a = 0, r = 0, c = t.length - 1, $ = t[0], m = t[c], p = n.length - 1, h = n[0], u = n[p];
   for (;a <= c && r <= p; ) if (null == $) $ = t[++a]; else if (null == m) m = t[--c]; else if (null == h) h = n[++r]; else if (null == u) u = n[--p]; else if (isSameVnode($, h)) patch($, h), 
@@ -5416,6 +5416,26 @@ const cmpModules = new Map, getModule = e => {
  e["s-p"] = [], e["s-rc"] = [], hostRefs.set(e, o);
 }, styles = new Map;
 
+class Button {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+    this.buttonTitle = '';
+  }
+  render() {
+    return (hAsync("button", null, this.buttonTitle));
+  }
+  static get cmpMeta() { return {
+    "$flags$": 0,
+    "$tagName$": "stencil-kit-button",
+    "$members$": {
+      "buttonTitle": [1, "button-title"]
+    },
+    "$listeners$": undefined,
+    "$lazyBundleId$": "-",
+    "$attrsToReflect$": []
+  }; }
+}
+
 const componentWithEventCss = "/*!@:host()*/.sc-component-with-event-h{display:block}/*!@.mb-shadow-4*/.mb-shadow-4.sc-component-with-event{margin-bottom:1rem}";
 
 class ComponentWithEvent {
@@ -5438,6 +5458,52 @@ class ComponentWithEvent {
     "$members$": {
       "message": [1],
       "greeting": [32]
+    },
+    "$listeners$": undefined,
+    "$lazyBundleId$": "-",
+    "$attrsToReflect$": []
+  }; }
+}
+
+class Div {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+    this.count = 100;
+  }
+  async click() {
+    console.log("click", this.count);
+    this.count++;
+  }
+  render() {
+    return (hAsync("div", null, hAsync("slot", null), hAsync("div", null, hAsync("h3", null, "Change Local State"), this.count, " -", " ", hAsync("button", { class: "green", onClick: () => this.click() }, "Click"))));
+  }
+  static get cmpMeta() { return {
+    "$flags$": 9,
+    "$tagName$": "stencil-kit-div",
+    "$members$": {
+      "count": [32]
+    },
+    "$listeners$": undefined,
+    "$lazyBundleId$": "-",
+    "$attrsToReflect$": []
+  }; }
+}
+
+class Link {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+    this.href = '';
+    this.linkTitle = '';
+  }
+  render() {
+    return (hAsync("a", { href: this.href }, this.linkTitle));
+  }
+  static get cmpMeta() { return {
+    "$flags$": 0,
+    "$tagName$": "stencil-kit-link",
+    "$members$": {
+      "href": [1],
+      "linkTitle": [1, "link-title"]
     },
     "$listeners$": undefined,
     "$lazyBundleId$": "-",
@@ -5532,7 +5598,10 @@ class MyComponent {
 }
 
 registerComponents([
+  Button,
   ComponentWithEvent,
+  Div,
+  Link,
   MyComponent$2,
   MyComponent$1,
   MyComponent,

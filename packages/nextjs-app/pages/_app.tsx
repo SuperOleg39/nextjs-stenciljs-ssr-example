@@ -11,9 +11,9 @@ export default class MyApp extends App {
       applyPolyfills,
       defineCustomElements
     } = require("stencil-web-components/loader");
-    applyPolyfills().then(() => {
-      defineCustomElements(window);
-    });
+    // applyPolyfills().then(() => {
+    //   defineCustomElements(window);
+    // });
   }
   render() {
     const { Component, pageProps } = this.props;

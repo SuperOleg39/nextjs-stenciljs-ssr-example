@@ -12,3 +12,6 @@ export const ChildComponent = /*@__PURE__*/createReactComponent<JSX.ChildCompone
 export const ComponentWithEvent = /*@__PURE__*/createReactComponent<JSX.ComponentWithEvent, HTMLComponentWithEventElement>('component-with-event');
 export const MyComponent = /*@__PURE__*/createReactComponent<JSX.MyComponent, HTMLMyComponentElement>('my-component');
 export const ParentComponent = /*@__PURE__*/createReactComponent<JSX.ParentComponent, HTMLParentComponentElement>('parent-component');
+export const StencilKitButton = /*@__PURE__*/createReactComponent<JSX.StencilKitButton, HTMLStencilKitButtonElement>('stencil-kit-button');
+export const StencilKitDiv = /*@__PURE__*/createReactComponent<JSX.StencilKitDiv, HTMLStencilKitDivElement>('stencil-kit-div');
+export const StencilKitLink = /*@__PURE__*/createReactComponent<JSX.StencilKitLink, HTMLStencilKitLinkElement>('stencil-kit-link');

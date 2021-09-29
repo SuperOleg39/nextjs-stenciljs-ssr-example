@@ -31,6 +31,15 @@ export namespace Components {
         "childMessage": string;
         "parentMessage": string;
     }
+    interface StencilKitButton {
+        "buttonTitle": string;
+    }
+    interface StencilKitDiv {
+    }
+    interface StencilKitLink {
+        "href": string;
+        "linkTitle": string;
+    }
 }
 declare global {
     interface HTMLChildComponentElement extends Components.ChildComponent, HTMLStencilElement {
@@ -57,11 +66,32 @@ declare global {
         prototype: HTMLParentComponentElement;
         new (): HTMLParentComponentElement;
     };
+    interface HTMLStencilKitButtonElement extends Components.StencilKitButton, HTMLStencilElement {
+    }
+    var HTMLStencilKitButtonElement: {
+        prototype: HTMLStencilKitButtonElement;
+        new (): HTMLStencilKitButtonElement;
+    };
+    interface HTMLStencilKitDivElement extends Components.StencilKitDiv, HTMLStencilElement {
+    }
+    var HTMLStencilKitDivElement: {
+        prototype: HTMLStencilKitDivElement;
+        new (): HTMLStencilKitDivElement;
+    };
+    interface HTMLStencilKitLinkElement extends Components.StencilKitLink, HTMLStencilElement {
+    }
+    var HTMLStencilKitLinkElement: {
+        prototype: HTMLStencilKitLinkElement;
+        new (): HTMLStencilKitLinkElement;
+    };
     interface HTMLElementTagNameMap {
         "child-component": HTMLChildComponentElement;
         "component-with-event": HTMLComponentWithEventElement;
         "my-component": HTMLMyComponentElement;
         "parent-component": HTMLParentComponentElement;
+        "stencil-kit-button": HTMLStencilKitButtonElement;
+        "stencil-kit-div": HTMLStencilKitDivElement;
+        "stencil-kit-link": HTMLStencilKitLinkElement;
     }
 }
 declare namespace LocalJSX {
@@ -91,11 +121,23 @@ declare namespace LocalJSX {
         "childMessage"?: string;
         "parentMessage"?: string;
     }
+    interface StencilKitButton {
+        "buttonTitle"?: string;
+    }
+    interface StencilKitDiv {
+    }
+    interface StencilKitLink {
+        "href"?: string;
+        "linkTitle"?: string;
+    }
     interface IntrinsicElements {
         "child-component": ChildComponent;
         "component-with-event": ComponentWithEvent;
         "my-component": MyComponent;
         "parent-component": ParentComponent;
+        "stencil-kit-button": StencilKitButton;
+        "stencil-kit-div": StencilKitDiv;
+        "stencil-kit-link": StencilKitLink;
     }
 }
 export { LocalJSX as JSX };
@@ -106,6 +148,9 @@ declare module "@stencil/core" {
             "component-with-event": LocalJSX.ComponentWithEvent & JSXBase.HTMLAttributes<HTMLComponentWithEventElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "parent-component": LocalJSX.ParentComponent & JSXBase.HTMLAttributes<HTMLParentComponentElement>;
+            "stencil-kit-button": LocalJSX.StencilKitButton & JSXBase.HTMLAttributes<HTMLStencilKitButtonElement>;
+            "stencil-kit-div": LocalJSX.StencilKitDiv & JSXBase.HTMLAttributes<HTMLStencilKitDivElement>;
+            "stencil-kit-link": LocalJSX.StencilKitLink & JSXBase.HTMLAttributes<HTMLStencilKitLinkElement>;
         }
     }
 }
